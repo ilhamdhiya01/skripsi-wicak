@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2023 at 07:02 AM
+-- Generation Time: Aug 23, 2023 at 10:47 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -43,9 +43,14 @@ CREATE TABLE `barangs` (
 --
 
 INSERT INTO `barangs` (`id`, `nama_barang`, `kategori_id`, `merk`, `satuan_id`, `stok`, `lokasi`) VALUES
-(1, 'Kondom', 1, 'Fiesta', 2, '100', 'Jakarta Selatan'),
-(2, 'Kangkung', 2, 'Pecel', 3, '100', 'Jakarta'),
-(3, 'Biskuat Macan', 4, 'Nestle', 1, '100', 'Jakarta');
+(1, 'Filing Besi', 1, 'Sanken', 3, '100', 'Gubug'),
+(2, 'Lemari Kayu', 2, 'Sanken', 3, '100', 'Gubug'),
+(3, 'Meja Tulis', 2, 'Sanken', 3, '100', 'Gubug'),
+(4, 'Kursi Tangan', 2, 'Sanken', 3, '100', 'Semarang'),
+(5, 'Kursi Putar', 2, 'Sanken', 3, '100', 'Gubug'),
+(6, 'Kursi Biasa', 1, 'Sanken', 1, '100', 'Gubug'),
+(7, 'Kipas Angin', 1, 'Miako', 2, '100', 'Gubug'),
+(8, 'Laptop', 1, 'Macbook', 2, '100', 'Gubug');
 
 -- --------------------------------------------------------
 
@@ -79,11 +84,10 @@ CREATE TABLE `kategoris` (
 --
 
 INSERT INTO `kategoris` (`id`, `nama_kategori`) VALUES
-(1, 'Kategori 1'),
-(2, 'Kategori 2'),
-(3, 'Kategori 3'),
-(4, 'Kategori 4'),
-(5, 'Kategori 5');
+(1, 'Besi'),
+(3, 'Campuran'),
+(4, 'Elektronik'),
+(2, 'Kayu');
 
 -- --------------------------------------------------------
 
@@ -159,9 +163,9 @@ CREATE TABLE `satuans` (
 --
 
 INSERT INTO `satuans` (`id`, `nama_satuan`) VALUES
-(3, 'kilogram'),
-(2, 'ons'),
-(1, 'pcs');
+(3, 'Buah'),
+(1, 'Set'),
+(2, 'Unit');
 
 -- --------------------------------------------------------
 
@@ -182,8 +186,8 @@ CREATE TABLE `suppliers` (
 --
 
 INSERT INTO `suppliers` (`id`, `nama_supplier`, `email`, `alamat`, `telepon`) VALUES
-(1, 'Herman', 'herman@gmail.com', 'Jl. Surga', '0812345678'),
-(2, 'Riski', 'riski@gmail.com', 'Jl. Neraka', '081234567');
+(1, 'Herman', 'herman@gmail.com', 'Jl. Surga Test', '0812345678'),
+(2, 'Riski', 'riski@gmail.com', 'Jl. Neraka Maseh', '081234567');
 
 -- --------------------------------------------------------
 
@@ -206,7 +210,11 @@ CREATE TABLE `transaksi_keluars` (
 --
 
 INSERT INTO `transaksi_keluars` (`id`, `kode_transaksi`, `nama_penerima`, `barang_id`, `tanggal_keluar`, `jumlah_barang`, `catatan`) VALUES
-(1, 'TRANSOUT1872023819', 'Budi Raharjo', 1, '2023-08-18', '5', 'Maseh');
+(3, 'TRANSOUT22720232120', 'Budi Raharjo', 6, '2023-08-22', '10', 'Barang Keluar'),
+(4, 'TRANSOUT22720232130', 'Budi Raharjo', 5, '2023-08-22', '15', 'Barang Keluar'),
+(5, 'TRANSOUT22720232132', 'Budi Raharjo', 3, '2023-08-22', '17', 'Barang Keluar'),
+(6, 'TRANSOUT22720232133', 'Budi Raharjo', 3, '2023-08-22', '13', 'Barang Keluar'),
+(7, 'TRANSOUT22720232134', 'Alvin', 5, '2023-08-22', '2', 'Barang Keluar');
 
 -- --------------------------------------------------------
 
@@ -229,9 +237,12 @@ CREATE TABLE `transaksi_masuks` (
 --
 
 INSERT INTO `transaksi_masuks` (`id`, `kode_transaksi`, `supplier_id`, `barang_id`, `tanggal_masuk`, `jumlah_barang`, `catatan`) VALUES
-(1, 'TRANSIN1872023817', 1, 1, '2023-08-18', '5', 'test mase'),
-(2, 'TRANSIN18720231136', 2, 3, '2023-08-18', '10', 'test'),
-(3, 'TRANSIN18720231144', 1, 2, '2023-08-18', '70', 'test');
+(7, 'TRANSIN2272023215', 1, 5, '2023-08-22', '5', 'Barang Masuk'),
+(8, 'TRANSIN2272023216', 2, 1, '2023-08-22', '10', 'Filing Besi'),
+(9, 'TRANSIN2272023217', 2, 3, '2023-08-22', '20', 'Barang masuk'),
+(10, 'TRANSIN2272023218', 2, 1, '2023-08-22', '10', 'Barang Masuk'),
+(11, 'TRANSIN22720232111', 2, 5, '2023-08-22', '14', 'Barang Masuk'),
+(12, 'TRANSIN22720232120', 1, 4, '2023-08-22', '17', 'Barang Masuk');
 
 -- --------------------------------------------------------
 
@@ -343,7 +354,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `barangs`
 --
 ALTER TABLE `barangs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -385,13 +396,13 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `transaksi_keluars`
 --
 ALTER TABLE `transaksi_keluars`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `transaksi_masuks`
 --
 ALTER TABLE `transaksi_masuks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`
